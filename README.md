@@ -58,6 +58,14 @@ genhtml coverage/lcov.info -o coverage/report
 
 ```
 
+## 布局组件 (Layout)
+
+布局组件：如 Row（横向布局）和 Column（纵向布局），以及其他 Flex 布局相关的组件，如 Expanded。
+
+```dart
+
+```
+
 ## 图片组件 (Image)
 
 用于加载和显示图片，支持多种加载方式，如从网络加载、本地文件加载等。可以通过 fit 属性控制图片的显示方式。
@@ -69,14 +77,6 @@ genhtml coverage/lcov.info -o coverage/report
 ## 文本组件 (Text)
 
 用于显示文本，可以设置文本的样式，如大小、粗细、颜色、字体等。
-
-```dart
-
-```
-
-## 布局组件 (Layout)
-
-布局组件：如 Row（横向布局）和 Column（纵向布局），以及其他 Flex 布局相关的组件，如 Expanded。
 
 ```dart
 
