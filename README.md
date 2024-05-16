@@ -18,6 +18,38 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
+## 目录
+
+flutter_project/
+|-- android/
+|-- ios/
+|-- lib/
+    |-- main.dart
+    |-- screens/
+        |-- home_screen.dart
+        |-- settings_screen.dart
+        |-- profile_screen.dart
+    |-- widgets/
+        |-- custom_button.dart
+        |-- custom_drawer.dart
+    |-- models/
+        |-- user.dart
+        |-- settings.dart
+    |-- services/
+        |-- api.dart
+        |-- authentication.dart
+    |-- utils/
+        |-- constants.dart
+        |-- helpers.dart
+|-- test/
+
+- lib/main.dart: 应用的入口文件，包含main()函数和顶层的runApp()调用。
+- lib/screens/: 存放各个页面的文件夹，**每个页面**通常是一个独立的Dart文件，例如首页、设置页等。
+- lib/widgets/: 存放可复用的小组件，**每个小组件**通常是一个独立的Dart文件，例如自定义按钮、卡片等。
+- lib/models/: 存放**数据模型**，用于定义数据结构。
+- lib/services/: 存放处理数据和与外部系统交互的服务，**每个服务**通常是一个独立的Dart文件，例如**API调用**、**数据库管理**等。
+- lib/utils/: 存放工具和帮助函数，**每个工具**通常是一个独立的Dart文件，例如**常量**、**转换函数**等。
+
 
 ## 1.运行项目
 
@@ -37,6 +69,18 @@ flutter packages get
 flutter test
 ```
 
+###  3.1 清理依赖
+```shell
+flutter clean
+```
+
+### 3.2 重新获取项目依赖
+```shell
+flutter pub get
+```
+
+
+
 
 ## 4.生成代码覆盖率报告
 
@@ -49,6 +93,9 @@ genhtml coverage/lcov.info -o coverage/report
 
 - [Flutter 组件列表](https://pub.flutter-io.cn/flutter)
 - [Flutter 组件列表（中文）](https://flutterchina.club/widgets/)
+
+- [一些不错的 UI 相关库推荐](https://blog.csdn.net/qq_28550263/article/details/131521673)
+- [有道云笔记】0.Flutter新手入门常用组件](https://note.youdao.com/s/MeSVopHZ)
 
 ## 容器组件 (Container)
 
@@ -88,13 +135,13 @@ genhtml coverage/lcov.info -o coverage/report
 
 按钮组件如 RaisedButton、FloatingActionButton、FlatButton 等。
 
-### 图标
+### 图标 (Icon)
 
 ```dart
 
 ```
 
-### 按钮
+### 按钮 (Button)
 
 ```dart
 
@@ -250,6 +297,49 @@ genhtml coverage/lcov.info -o coverage/report
 
 # 常见问题
 
-## 1.
+## 1.运行安卓项目报错"Could not resolve all files for configuration ':app:debugRuntimeClasspath'.Failed to transform x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar (io.flutter:x86_debug:1.0.0-c4cd48e186460b32d44585ce3c103271ab676355) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.Could not download x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar (io.flutter:x86_debug:1.0.0-c4cd48e186460b32d44585ce3c103271ab676355)Could not get resource 'https://storage.flutter-io.cn/download.flutter.io/io/flutter/x86_debug/1.0.0-c4cd48e186460b32d44585ce3c103271ab676355/x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar'Premature end of Content-Length delimited message body (expected: 13,982,261; received: 12,407,066)
 
-## 2.
+**原因分析**：Flutter在构建过程中无法正确下载或解析某些依赖文件。错误信息显示尝试下载x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar时失败，可能是网络问题或资源服务器问题。
+
+**解决办法**：
+
+- 清理和获取依赖：
+  在命令行中运行flutter clean来清理旧的构建文件。
+  运行flutter pub get来重新获取项目依赖。
+- Gradle设置：
+  检查gradle.properties文件，确保有合适的设置来支持下载大文件，如设置org.gradle.jvmargs=-Xmx1536M来增加Gradle的可用内存。
+
+## 2.CocoaPods not installed. Skipping pod install.
+
+（1）查看安装的 Ruby 版本
+
+
+```shell
+rbenv versions
+rbenv install 2.7.0
+# 设置 Ruby 2.7.0 为全局默认版本
+rbenv global 2.7.0
+# 重新初始化 rbenv
+rbenv rehash
+# 验证
+ruby -v
+```
+
+**确保以下行存在于你的配置文件中**
+
+```
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+```
+
+## 2.安装 CocoaPods
+
+```shell
+# 安装 CocoaPods 
+sudo gem install cocoapods
+# 设置 CocoaPods
+pod setup
+# 验证
+pod --version
+```
+

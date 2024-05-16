@@ -1,118 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'screens/my.dart'; // 导入
+import 'screens/home.dart';  // 导入home页面
+import 'widgets/showAlertDialog.dart'; // 假设这是一个自定义的弹窗组件
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'config.dart'; // 导入配置文件
 
+/**
+ *  1. 导入Material UI组件库
+ **/
+/**
+ *  2. Flutter应用的入口：runApp（），即首先执行该函数
+ *  作用：将给定的组件(widget)显示在屏幕上
+ *  注：若不使用runApp（），程序仍会正常运行，但屏幕上什么都不会显示，相当于一个Dart控制台程序
+ **/
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// 等价于 void main() => runApp(MyApp());
 
+/**
+ *  3. 自己定义的组件类MyApp，继承自StatelessWidget
+ *  作用：整个应用的底层Widget
+ *  注：StatelessWidget是无状态组件，具体介绍请跳出看附录1
+ **/
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  // build()：Widget中的生命周期方法
+  // 作用：描述如何构建UI界面
+  // 关于其他生命周期方法，请看附录2
   // 这个小部件是您的应用程序的根。
   @override
   Widget build(BuildContext context) {
+    // Material App是一个使用Material Design设计风格的应用，具体介绍请看附录3
+    // 此处设置了标题、主题 & 要显示的界面 -> MyHomePage -> 跳转4
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // 这是您的应用程序的主题。
-        //
-        // 尝试这个：使用 "flutter run" 运行您的应用程序。你会看到
-        // 应用程序有一个紫色的工具栏。然后，不退出应用程序，
-        // 尝试将下面 colorScheme 中的 seedColor 改为 Colors.green
-        // 然后调用 "热重载"（保存更改或在支持 Flutter 的 IDE 中按 "热重载" 按钮，
-        // 或者如果您使用命令行启动应用程序，请按 "r"）。
-        //
-        // 注意，计数器没有重置为零；应用程序状态在重载期间不会丢失。要重置状态，请使用热重启。
-        //
-        // 这也适用于代码，不仅仅是值：大多数代码更改都可以通过热重载进行测试。
+        primaryColor: Colors.deepPurple,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(), // 指定应用程序的主界面
     );
   }
 }
 
+/**
+ *  4. 自己定义的组件类，继承自StatefulWidget
+ *  作用：设置应用打开的显示界面
+ *  注：StatefulWidget是有状态组件，具体介绍请跳出看附录4
+ **/
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // 这个小部件是您应用程序的首页。它是有状态的，意味着
-  // 它有一个 State 对象（在下面定义），包含影响其外观的字段。
-
-  // 这个类是状态的配置。它保存了由父级（在这个案例中是 App 小部件）提供的值
-  // （在这个案例中是标题）并被 State 的 build 方法使用。在 Widget 子类中的字段
-  // 总是被标记为 "final"。
-
-  final String title;
+  MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState(); // 调用父类StatefulWidget的createState()，用于创建和StatefulWidget相关的状态 -> 跳转5
 }
 
+/**
+ *  5. 继承自State类
+ *  作用：实现一系列Widget生命周期方法 & 更新Widget的状态，
+ *  注：StatefulWidget是有状态组件，具体介绍请跳出看附录4
+ **/
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // 这个调用 setState 告诉 Flutter 框架某些东西已经
-      // 改变了在这个 State 中，这会导致它重新运行下面的 build 方法
-      // 以便显示可以反映更新的值。如果我们改变了 _counter 而不调用 setState()，
-      // 那么 build 方法将不会再次被调用，因此似乎没有任何事情发生。
-      _counter++;
-    });
-  }
+  int _currentIndex = 0;
+  final List<Widget> _pages = [
+    HomeScreen(title: '首页'), // 使用HomeScreen
+    MyScreen(title: '我的页面'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(_pages[_currentIndex] is HomeScreen ? '首页' : '我的页面'), // 根据当前页面设置标题
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      body: _pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '首页',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: '我的',
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
