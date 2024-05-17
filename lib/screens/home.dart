@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../widgets/showAlertDialog.dart'; // 导入弹窗
-import '../widgets/showToast.dart'; // 导入showToast函数
-import 'package:fluttertoast/fluttertoast.dart';// 导入toast
-
+import '../widgets/showAlertDialog.dart';
+import '../widgets/showToast.dart';
+import '../widgets/carousel_widget.dart';  // 确保引用了新的carouselWidget
+import '../widgets/icon_grid_widget.dart';
+import '../widgets/product_list_widget.dart';
+import '../widgets/custom_image_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   final String title;
@@ -16,12 +18,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _counter = 0;
 
-  void _incrementCounter() async{
-    // 接收弹窗点击结果
-   bool result = await CustomAlertDialog.showConfirmDialog2(context, '确认', '您确定要增加计数吗？');
-    // 判断是否点击确定
+  final List<String> imgList = [
+    'https://images.homeking365.com/c4fbebb7-8854-4b0d-a3f3-6ca2f9556676.jpeg',
+    'https://images.homeking365.com/1c33dde1-3c20-47ed-9232-74c4bfd97c0d.jpg',
+    'https://images.homeking365.com/e6299bfa-df04-4330-8414-2363da789d8a.jpeg',
+  ];
+
+  void _incrementCounter() async {
+    bool result = await CustomAlertDialog.showConfirmDialog2(context, '确认', '您确定要增加计数吗？');
     if (result) {
-      // 增加计数---状态管理setState()
       setState(() {
         _counter++;
       });
@@ -41,9 +46,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            // 轮播图
+            CarouselWidget(imgList: imgList),  // 使用CarouselWidget
+            // 图片
+            const CustomImageWidget(
+              imageUrl: "https://images.homeking365.com/a0f58a88-2b58-4dcb-970d-2d14a15a5a7d.png",
+            ),
+            // 文本
             Text('You have pushed the button this many times:'),
+            // 文本
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
@@ -52,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,// 
+        onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
