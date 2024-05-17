@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/showAlertDialog.dart'; // 导入弹窗
+import '../widgets/showToast.dart'; // 导入showToast函数
 import 'package:fluttertoast/fluttertoast.dart';// 导入toast
 
 
@@ -30,18 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
       print("用户取消了操作");
       showToast("用户取消了操作");
     }
-  }
-  // 定义函数用于显示Toast
-  void showToast(String message) {
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
   }
 
   @override
