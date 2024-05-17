@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,// center、start、end
           children: <Widget>[
             // 轮播图
             CarouselWidget(imgList: imgList),  // 使用CarouselWidget
