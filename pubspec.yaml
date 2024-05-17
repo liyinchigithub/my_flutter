@@ -34,9 +34,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http: ^0.13.3
-  fluttertoast: ^8.0.8
-  carousel_slider: ^4.0.0
+  http: ^0.13.3        # http请求库
+  fluttertoast: ^8.0.8 # toast库
+  carousel_slider: ^4.0.0 #  轮播图库
+  url_launcher: ^6.0.20  # url跳转库
 
   # "flutter_lints"包包含了一套推荐的lint规则，
   # 以鼓励良好的编码实践。该包提供的lint集在你的
@@ -57,6 +58,8 @@ flutter:
   # 要添加资源到你的应用，添加一个assets部分，如下所示:
   assets:
     - assets/images/logo.jpg
+    - assets/images/wechat.png
+    - assets/images/apple.png
 
   # 图片资源可以指向一个或多个分辨率特定的"variants"，详情见
   # https://flutter.dev/assets-and-images/#resolution-aware

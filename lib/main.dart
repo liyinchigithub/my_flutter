@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'screens/my.dart'; // 导入
 import 'screens/home.dart';  // 导入home页面
+import 'screens/login.dart'; // 导入login页面';
 import 'widgets/showAlertDialog.dart'; // 假设这是一个自定义的弹窗组件
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -41,7 +42,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(), // 指定应用程序的主界面
+      initialRoute: '/', // 初始路由
+      routes: {
+        '/': (context) => MyHomePage(), // 主页
+        '/login': (context) => LoginScreen(), // 登录页面路由
+      },
+
     );
   }
 }
@@ -92,6 +98,53 @@ class _MyHomePageState extends State<MyHomePage> {
             label: '我的',
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                '抽屉头部',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('消息'),
+              onTap: () {
+                // 更新状态或进行其他操作
+                Navigator.pop(context); // 关闭抽屉
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text('个人'),
+              onTap: () {
+                // 更新状态或进行其他操作
+                Navigator.pop(context); // 关闭抽屉
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('设置'),
+              onTap: () {
+                // 更新状态或进行其他操作
+                Navigator.pop(context); // 关闭抽屉
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
