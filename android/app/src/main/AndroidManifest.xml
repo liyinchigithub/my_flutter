@@ -7,8 +7,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /><!-- Android 10及以上，如果你的应用需要访问文件和目录以外的特定目录，你需要使用MANAGE_EXTERNAL_STORAGE权限，并通过用户跳转到一个系统设置页面来授予权限-->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 <!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
-    <!--    <uses-permission android:name="android.permission.CAMERA" />-->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- <uses-permission android:name="android.permission.BLUETOOTH_SCAN" /> -->

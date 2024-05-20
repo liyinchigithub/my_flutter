@@ -10,6 +10,7 @@ import '../widgets/icon_grid_widget.dart';//
 import '../utils/getLocation.dart';// 定位
 import '../utils/getBlueToothBLE.dart';// BLE蓝牙
 // import '../utils/getBlueToothClassic.dart'; // 经典蓝牙
+import '../screens/photoCamera.dart';
 
 class TestScreen extends StatefulWidget {
   final String title;
@@ -141,6 +142,15 @@ class _TesteScreenState extends State<TestScreen> {
               child: Text('检查蓝牙状态'),
             ),
             Text(_bluetoothStatus),  // 显示蓝牙状态
+             OutlinedButton(
+              onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => photoCamera()),
+              );
+              },
+              child: Text('相册和相机'),
+            ),
           ],
         ),
       ),
