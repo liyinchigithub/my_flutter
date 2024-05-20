@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'screens/my.dart'; // 导入
 import 'screens/home.dart';  // 导入home页面
 import 'screens/login.dart'; // 导入login页面';
+import 'screens/test.dart'; // 导入login页面';
 import 'widgets/showAlertDialog.dart'; // 假设这是一个自定义的弹窗组件
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -71,7 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     HomeScreen(title: '首页'), // 使用HomeScreen
+    TestScreen(title: '测试'),
     MyScreen(title: '我的'),
+
   ];
 
   @override
@@ -94,6 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
             label: '首页',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit_sharp),
+            label: '测试',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
             label: '我的',
           ),
@@ -103,12 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
               child: Text(
-                '抽屉头部',
+                '我的',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

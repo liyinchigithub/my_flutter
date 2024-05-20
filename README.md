@@ -343,3 +343,13 @@ pod setup
 pod --version
 ```
 
+
+
+## 报错
+3.清理和获取依赖
+
+```shell
+flutter clean
+flutter pub get
+
+```

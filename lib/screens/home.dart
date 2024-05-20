@@ -36,37 +36,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        drawer: DrawerWidget(
-          closeDrawer: () => Navigator.of(context).pop(),
-        ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            // 轮播图
-            CarouselWidget(imgList: imgList),
-            // 图片
-            const CustomImageWidget(
-              imageUrl: "https://images.homeking365.com/a0f58a88-2b58-4dcb-970d-2d14a15a5a7d.png",
-            ),
-            // 金刚区
-            // IconGridWidget(),
-            // 文字
-            Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      appBar: AppBar(
+        title: Text(widget.title),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () => Scaffold.of(context).openDrawer(),
         ),
       ),
+      // 抽屉
+      drawer: DrawerWidget(
+        closeDrawer: () => Navigator.of(context).pop(),
+      ),
+      body: SingleChildScrollView(
+    child: Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          // 轮播图
+          CarouselWidget(imgList: imgList),
+
+          ]
+      ),
+      ),
+      // 浮层按钮
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',

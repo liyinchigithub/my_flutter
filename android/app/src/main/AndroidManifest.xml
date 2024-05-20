@@ -1,4 +1,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /><!-- Android 10及以上，如果你的应用需要访问文件和目录以外的特定目录，你需要使用MANAGE_EXTERNAL_STORAGE权限，并通过用户跳转到一个系统设置页面来授予权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
+    <!--    <uses-permission android:name="android.permission.CAMERA" />-->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- <uses-permission android:name="android.permission.BLUETOOTH_SCAN" /> -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /><!-- 从Android 10（API级别29）开始，ACCESS_FINE_LOCATION权限被分为更细粒度的权限，如果你的应用需要在后台访问位置-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 访问GPS定位 --> <!-- 从Android 6.0（API级别23）开始，蓝牙扫描需要定位权限，因为蓝牙扫描可以被用来粗略地定位用户。因此，如果你的应用目标是API级别23或更高，并且需要进行蓝牙扫描 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 网络定位 -->
+<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_PROVIDERS" /> -->
+<!--    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />-->
+    <!--    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />-->
     <application
         android:label="my_flutter"
         android:name="${applicationName}"
