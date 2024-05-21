@@ -353,3 +353,21 @@ flutter clean
 flutter pub get
 
 ```
+
+
+## 新增页面配置路由
+
+- 新增页面类名大写开头
+
+- 配置到路由表
+
+>/my_flutter/lib/main.dart
+
+```dart
+routes: {
+        '/': (context) => MyHomePage(), // 主页
+        '/login': (context) => LoginScreen(), // 登录页
+        '/photo':(context) => photoCamera(),// 测试相机、相册页
+        '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
+      },
+```

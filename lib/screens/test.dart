@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/httpRequest.dart';
 import '../widgets/showAlertDialog.dart'; // 弹窗
 import '../widgets/showToast.dart';
 import '../widgets/carousel_widget.dart'; // 确保引用了新的carouselWidget
@@ -11,6 +12,7 @@ import '../utils/getLocation.dart'; // 定位
 import '../utils/getBlueToothBLE.dart'; // BLE蓝牙
 // import '../utils/getBlueToothClassic.dart'; // 经典蓝牙
 import '../screens/photoCamera.dart'; // 相册、相机
+import '../screens/testHttpRequest.dart';// http请求测试
 import '../utils/sharedPreferences.dart'; // 读写缓存
 
 class TestScreen extends StatefulWidget {
@@ -204,10 +206,20 @@ class _TesteScreenState extends State<TestScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => photoCamera()),
+                  MaterialPageRoute(builder: (context) => PhotoCamera()),
                 );
               },
               child: Text('相册和相机'),
+            ),
+            //跳转到testHttpRequest.dart
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TestHttpRequest()),
+                );
+              },
+              child: Text('http请求'),
             ),
             // 输入框
             Container(

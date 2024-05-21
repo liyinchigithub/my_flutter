@@ -2,8 +2,8 @@ import 'dart:io'; // 导入Dart的IO库以使用文件系统
 import 'package:flutter/material.dart'; // 导入Flutter材料设计包
 import 'package:image_picker/image_picker.dart'; // 导入图片选择器包
 
-// 定义一个名为photoCamera的StatefulWidget
-class photoCamera extends StatefulWidget {
+// 定义一个名为PhotoCamera的StatefulWidget
+class PhotoCamera extends StatefulWidget {
   @override
   // 创建状态
   State<StatefulWidget> createState() {
@@ -12,7 +12,7 @@ class photoCamera extends StatefulWidget {
 }
 
 // 定义_PhotoCameraState类，它是photoCamera的状态
-class _PhotoCameraState extends State<photoCamera> {
+class _PhotoCameraState extends State<PhotoCamera> {
   XFile? _image; // 用于存储选取的图片
 
   // 从相机或相册获取图片

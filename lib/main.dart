@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:my_flutter/screens/photoCamera.dart';
+import 'package:my_flutter/screens/testHttpRequest.dart';
 import 'screens/my.dart'; // 导入
 import 'screens/home.dart'; // 导入home页面
 import 'screens/login.dart'; // 导入login页面';
 import 'screens/test.dart'; // 导入login页面';
+import 'screens/bluetooth.dart'; // 导入蓝牙
 import 'utils/sharedPreferences.dart'; // 导入sharedPreferences
 import 'widgets/showAlertDialog.dart'; // 假设这是一个自定义的弹窗组件
 import 'package:http/http.dart' as http;
@@ -48,7 +51,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/', // 初始路由
       routes: {
         '/': (context) => MyHomePage(), // 主页
-        '/login': (context) => LoginScreen(), // 登录页面路由
+        '/login': (context) => LoginScreen(), // 登录页
+        '/photo':(context) => PhotoCamera(),// 测试相机、相册页
+        '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
+        '/bluetooth':(context) => BluetoothScreen(),// 蓝牙
       },
     );
   }
