@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'; // 导入Flutter材料设计包
 import 'package:fluttertoast/fluttertoast.dart'; // 导入Fluttertoast包
 
+// Toast
 void showToast(String message) { // 定义一个显示Toast的函数
   Fluttertoast.showToast(
       msg: message, // 显示的消息内容

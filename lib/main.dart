@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'screens/my.dart'; // 导入
-import 'screens/home.dart';  // 导入home页面
+import 'screens/home.dart'; // 导入home页面
 import 'screens/login.dart'; // 导入login页面';
 import 'screens/test.dart'; // 导入login页面';
+import 'utils/sharedPreferences.dart'; // 导入sharedPreferences
 import 'widgets/showAlertDialog.dart'; // 假设这是一个自定义的弹窗组件
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -13,11 +14,11 @@ import 'config.dart'; // 导入配置文件
 ///  作用：将给定的组件(widget)显示在屏幕上
 ///  注：若不使用runApp（），程序仍会正常运行，但屏幕上什么都不会显示，相当于一个Dart控制台程序
 ///
-void main() {
-  runApp(MyApp());// 等价于 void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesService.init();
+  runApp(MyApp()); // 等价于 void main() => runApp(MyApp());
 }
-
-
 
 ///  2. 自己定义的组件类MyApp，继承自StatelessWidget
 ///  作用：整个应用的底层Widget
@@ -28,6 +29,7 @@ void main() {
 ///
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
   /// build()：Widget中的生命周期方法
   /// 作用：描述如何构建UI界面
   /// 这个小部件是您的应用程序的根。
@@ -48,7 +50,6 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(), // 主页
         '/login': (context) => LoginScreen(), // 登录页面路由
       },
-
     );
   }
 }
@@ -59,8 +60,10 @@ class MyApp extends StatelessWidget {
 ///
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
+
   @override
-  State<MyHomePage> createState() => _MyHomePageState(); // 调用父类StatefulWidget的createState()，用于创建和StatefulWidget相关的状态 -> 跳转5
+  State<MyHomePage> createState() =>
+      _MyHomePageState(); // 调用父类StatefulWidget的createState()，用于创建和StatefulWidget相关的状态 -> 跳转5
 }
 
 ///  4. 继承自State类
@@ -74,7 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
     HomeScreen(title: '首页'), // 使用HomeScreen
     TestScreen(title: '测试'),
     MyScreen(title: '我的'),
-
   ];
 
   @override
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // appBar: AppBar(
       //   title: Text(_pages[_currentIndex] is HomeScreen ? '首页' : '我的'), // 根据当前页面设置标题（每个页面自己有设置）
       // ),
-      body: _pages[_currentIndex],//
+      body: _pages[_currentIndex], //
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -145,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // 更新状态或进行其他操作
                 Navigator.pop(context); // 关闭抽屉
                 Navigator.push(
-                  context, 
+                  context,
                   MaterialPageRoute(builder: (context) => LoginScreen()),
                 );
               },

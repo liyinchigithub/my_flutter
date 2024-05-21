@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';  // 导入Flutter材料设计库
 
+// 图片
 class CustomImageWidget extends StatelessWidget {  // 创建一个无状态的自定义图片组件
   final String imageUrl;  // 图片URL
   final double height;  // 组件高度

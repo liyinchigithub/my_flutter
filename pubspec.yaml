@@ -42,7 +42,8 @@ dev_dependencies:
   flutter_blue: ^0.8.0 # BLE蓝牙
 #  flutter_bluetooth_serial: ^0.3.2 # 经典蓝牙
 #  flutter_blue_classic: 0.0.2 # 经典蓝牙
-  image_picker: ^1.1.1
+  image_picker: ^1.1.1  # 选择图片（相机、相册）
+  shared_preferences: ^2.0.6 # 缓存
 
   # "flutter_lints"包包含了一套推荐的lint规则，
   # 以鼓励良好的编码实践。该包提供的lint集在你的

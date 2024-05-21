@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';  // 添加URL启动库，用于打开链接
 
-// 轮播图组件
+// 轮播图
 class CarouselWidget extends StatefulWidget {
   final Map<String, String> imgList;  // 将图片列表定义为键值对形式，键为图片URL，值为点击后跳转的URL
 
