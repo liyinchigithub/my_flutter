@@ -81,12 +81,37 @@ class _TesteScreenState extends State<TestScreen> {
 }
 
   @override
+  void initState() {
+    super.initState();
+    print("initState: 初始化状态");
+  }
+  
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("didChangeDependencies: 依赖变化");
+  }
+
+  @override
+  void didUpdateWidget(TestScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget: Widget更新");
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    print("deactivate: Deactivate");
+  }
+
+  @override
   void dispose() {
     // 清理控制器资源
     _textFieldUsernameController.dispose();
     _textFieldPasswordController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
