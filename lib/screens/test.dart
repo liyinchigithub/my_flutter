@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter/screens/bluetoothClassic.dart';
 import '../utils/httpRequest.dart';
 import '../widgets/showAlertDialog.dart'; // 弹窗
 import '../widgets/showToast.dart';
@@ -202,6 +203,16 @@ class _TesteScreenState extends State<TestScreen> {
               child: Text('检查蓝牙状态'),
             ),
             Text(_bluetoothStatus), // 显示蓝牙状态
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BluetoothClassicScreen()),
+                );
+              },
+              child: Text('经典蓝牙'),
+            ),
+
             OutlinedButton(
               onPressed: () {
                 Navigator.push(
