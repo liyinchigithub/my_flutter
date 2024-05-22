@@ -35,6 +35,10 @@ class IntroScreen extends StatelessWidget {
         //   MaterialPageRoute(builder: (context) => HomeScreen(title: "首页"))
         // );
       },
+      onSkip: () {
+        // 当点击跳过按钮时的动作
+        Navigator.of(context).pushReplacementNamed('/');
+      },
       showSkipButton: true,
       skip: const Text('跳过'),
       next: const Text('下一步'),
