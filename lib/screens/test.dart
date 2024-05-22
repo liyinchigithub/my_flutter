@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter/screens/bluetoothClassic.dart';
-import '../utils/httpRequest.dart';
-import '../widgets/showAlertDialog.dart'; // 弹窗
-import '../widgets/showToast.dart';
+import 'package:my_flutter/screens/bluetooth_classic.dart';
+import '../utils/http_request.dart';
+import '../widgets/show_alert_dialog.dart'; // 弹窗
+import '../widgets/show_toast.dart';
 import '../widgets/carousel_widget.dart'; // 确保引用了新的carouselWidget
 import '../widgets/icon_grid_widget.dart';
 import '../widgets/product_list_widget.dart'; //
 import '../widgets/custom_image_widget.dart'; // 图片
 // import '../widgets/drawer_widget.dart';// 抽屉
 import '../widgets/icon_grid_widget.dart'; //
-import '../utils/getLocation.dart'; // 定位
-import '../utils/getBlueToothBLE.dart'; // BLE蓝牙
-// import '../utils/getBlueToothClassic.dart'; // 经典蓝牙
-import '../screens/photoCamera.dart'; // 相册、相机
-import '../screens/testHttpRequest.dart';// http请求测试
-import '../utils/sharedPreferences.dart'; // 读写缓存
+import '../utils/get_location.dart'; // 定位
+import '../utils/get_bluetooth_BLE.dart'; // BLE蓝牙
+// import '../utils/get_bluetooth_classic.dart'; // 经典蓝牙
+import '../screens/photo_camera.dart'; // 相册、相机
+import '../screens/test_http_request.dart';// http请求测试
+import '../utils/shared_preferences.dart'; // 读写缓存
 
 class TestScreen extends StatefulWidget {
   final String title;

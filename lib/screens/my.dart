@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../config.dart';
+import '../widgets/my_order_widget.dart';
+import '../widgets/my_function_list_widget.dart';
 
 class MyScreen extends StatelessWidget {
   final String title; 
@@ -18,7 +20,7 @@ class MyScreen extends StatelessWidget {
         return responseData['data'][0]; // 返回第一个用户的数据
       } else {
         return {
-          'avatar_url': 'https://via.placeholder.com/1', // 默认头像URL
+          'avatar_url': 'https://via.placeholder.com/150', // 默认头像URL
           'name': '无', // 默认昵称
           'id': '无' // 默认ID
         }; // 返回默认数据
@@ -63,38 +65,44 @@ class MyScreen extends StatelessWidget {
             return Center(child: Text("Error: ${snapshot.error}")); // 显示错误信息
           } else {
             final userData = snapshot.data!; // 获取用户数据
-            return Padding(
-              padding: const EdgeInsets.all(16.0), // 设置内边距
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start, // 左对齐
-                children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: NetworkImage(userData['avatar_url']), // 显示用户头像
-                      ),
-                      SizedBox(width: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start, // 左对齐
-                        children: [
-                          Text(
-                            userData['name'], // 显示用户昵称
-                            style: const TextStyle(
-                                fontSize: 24,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0), // 设置内边距
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start, // 左对齐
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(userData['avatar_url']), // 显示用户头像
+                        ),
+                        SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start, // 左对齐
+                          children: [
+                            Text(
+                              userData['name'], // 显示用户昵称
+                              style: const TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold
+                              ),
                             ),
-                          ),
-                          Text(
-                            "ID: ${userData['id']}", // 显示用户ID
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                            Text(
+                              "ID: ${userData['id']}", // 显示用户ID
+                              style: TextStyle(fontSize: 16, color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20), // 添加间距
+                    MyOrder(), // 引入第二部分
+                    SizedBox(height: 20), // 添加间距
+                    MyFunctionList(), // 引入第三部分
+                  ],
+                ),
               ),
             );
           }
