@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import '../screens/home.dart';
+import '../main.dart';
 
 
 class IntroScreen extends StatelessWidget {
@@ -29,15 +30,16 @@ class IntroScreen extends StatelessWidget {
     return IntroductionScreen(
       pages: getPages(),
       onDone: () {
-        // 当点击完成按钮时的动作
-        Navigator.of(context).pushReplacementNamed('/');
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(builder: (context) => HomeScreen(title: "首页"))
-        // );
+        // 当点击完成按钮时的动作，跳转到包含TabBar的MyHomePage
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MyHomePage())
+        );
       },
       onSkip: () {
-        // 当点击跳过按钮时的动作
-        Navigator.of(context).pushReplacementNamed('/');
+       // 当点击跳过按钮时的动作，同样跳转到MyHomePage
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MyHomePage())
+        );
       },
       showSkipButton: true,
       skip: const Text('跳过'),
