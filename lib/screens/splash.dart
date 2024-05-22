@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
       splash: 'assets/images/logo.jpg',  // 确保你的图片在正确的路径
       nextScreen: HomeScreen(title: "首页",),
       splashTransition: SplashTransition.rotationTransition,
-      pageTransitionType: PageTransitionType.scale,
+      pageTransitionType: PageTransitionType.fade,
       backgroundColor: Colors.white
     );
   }
