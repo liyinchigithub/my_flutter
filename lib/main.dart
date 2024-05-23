@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   /// build()：Widget中的生命周期方法
   /// 作用：描述如何构建UI界面
   /// 这个小部件是您的应用程序的根。
-  /// 关于其他生命周期方法，请看附录2
+  /// 关于其他生命周期方法：initState、dispose、didChangeDependencies、didUpdateWidget、deactivate
   @override
   Widget build(BuildContext context) {
     // Material App是一个使用Material Design设计风格的应用，具体介绍请看附录3
@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
 
 ///  3. 自己定义的组件类，继承自StatefulWidget
 ///  作用：设置应用打开的显示界面
-///  注：StatefulWidget是有状态组件，具体介绍请跳出看附录4
+///  注：StatefulWidget是有状态组件
 ///
 class MainScreen extends StatefulWidget {
   MainScreen({super.key});
@@ -82,7 +82,6 @@ class MainScreen extends StatefulWidget {
 ///  4. 继承自State类
 ///  作用：
 ///      实现一系列Widget生命周期方法 & 更新Widget的状态，
-///  注：StatefulWidget是有状态组件，具体介绍请跳出看附录4
 ///
 class _MainState extends State<MainScreen> {
   int _currentIndex = 0;

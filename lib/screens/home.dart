@@ -14,6 +14,7 @@ import '../widgets/product_card_big_widget.dart';
 import '../widgets/product_card_small_widget.dart';
 import '../widgets/product_card_medium_widget.dart';
 import '../screens/intro.dart';
+import '../screens/intro2.dart';
 
 // 首页
 class HomeScreen extends StatefulWidget {
@@ -26,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
   ScrollController _scrollController = ScrollController();
   bool _showBackToTopButton = false;
 
@@ -42,8 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
     bool isFirstTime = (prefs.getBool('first_time') ?? true);
     // 判断是否首次启动
     if (isFirstTime) {
-      // 如果是第一次，显示欢迎页
+      // 欢迎页
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IntroScreen()));
+      // 欢迎页
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Intro2Screen()));
+      // 缓存已显示过欢迎页
       await prefs.setBool('first_time', false);
     }
   }
@@ -51,8 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
   // Widget生命周期：初始化
   @override
   void initState() {
+    // 调用父类的initState()方法
     super.initState();
+    // 检查首次启动
      _checkFirstTime();
+    // 监听滚动事件，判断是否显示“返回到顶部”按钮
     _scrollController.addListener(() {
       if (_scrollController.offset >= MediaQuery.of(context).size.height) {
         if (!_showBackToTopButton) {

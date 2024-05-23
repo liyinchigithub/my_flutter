@@ -49,6 +49,9 @@ dev_dependencies:
   flutter_staggered_grid_view: ^0.7.0 # 瀑布流
   bluetooth_classic: ^0.0.1 # 经典蓝牙
   introduction_screen: ^3.1.14 # 启动页
+  liquid_swipe: ^3.1.0 # 欢迎页
+
+
   # "flutter_lints"包包含了一套推荐的lint规则，
   # 以鼓励良好的编码实践。该包提供的lint集在你的
   # 包的根目录下的`analysis_options.yaml`文件中被激活。
