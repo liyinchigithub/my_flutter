@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../main.dart';  // 确保你已经正确导入了MyHomePage
 
+//启动页 Widget
 class SplashNavigator extends StatefulWidget {
   @override
   _SplashNavigatorState createState() => _SplashNavigatorState();

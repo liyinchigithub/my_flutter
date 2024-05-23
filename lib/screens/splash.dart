@@ -3,6 +3,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import '../widgets/splash_navigator.dart';  // 确保你已经正确导入了SplashNavigator
 
+// 启动页
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

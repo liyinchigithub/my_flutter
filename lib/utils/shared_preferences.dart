@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
+//工具类-读写缓存
 class SharedPreferencesService {
   static SharedPreferences? _prefs;
 

@@ -10,9 +10,9 @@ import '../widgets/drawer_widget.dart';
 import '../widgets/icon_grid_widget.dart';
 import '../widgets/pin_product_widget.dart';  // 引入PinProductWidget
 import '../widgets/product_list_widget.dart';
-
 import '../screens/intro.dart';
 
+// 首页
 class HomeScreen extends StatefulWidget {
   final String title;
 

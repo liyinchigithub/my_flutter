@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//产品列表 Widget
 class ProductListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

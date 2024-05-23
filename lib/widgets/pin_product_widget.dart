@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 拼图 Widget
 class PinProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

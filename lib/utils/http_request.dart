@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';  // 导入 Dio 库
 import 'dart:io';  // 导入 Dart 的 IO 库，用于文件操作
 
 
-
+//工具类-http请求
 class HttpRequest {
   Dio _dio = Dio();  // 初始化 Dio 对象
 

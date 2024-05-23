@@ -3,7 +3,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import '../screens/home.dart';
 import '../main.dart';
 
-
+// 欢迎页
 class IntroScreen extends StatelessWidget {
   List<PageViewModel> getPages() {
     return [

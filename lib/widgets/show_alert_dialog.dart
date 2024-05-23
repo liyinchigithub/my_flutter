@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 弹窗
+// 弹窗 Widget
 class CustomAlertDialog {
   static void showOneButtonDialog(BuildContext context, String title, String content) {
     showDialog(

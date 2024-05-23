@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//消息中心
 class MessageScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

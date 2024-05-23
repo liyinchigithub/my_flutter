@@ -3,7 +3,7 @@ import 'package:bluetooth_classic/bluetooth_classic.dart'; // 导入蓝牙经典
 import 'package:bluetooth_classic/models/device.dart';
 import 'package:flutter/services.dart'; // 导入设备模型
 
-// 经典蓝牙
+// 经典蓝牙页
 class BluetoothClassicScreen extends StatefulWidget { // 创建一个有状态的小部件，用于蓝牙屏幕
   const BluetoothClassicScreen({super.key}); // 构造函数
 

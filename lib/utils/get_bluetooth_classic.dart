@@ -1,5 +1,6 @@
 // import 'package:flutter_blue_classic/flutter_blue_classic.dart';
-//
+
+//工具类-经典蓝牙
 // class BluetoothManager {
 //   final FlutterBlueClassic _bluetoothClassic = FlutterBlueClassic(usesFineLocation: true);
 //

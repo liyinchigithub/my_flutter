@@ -2,7 +2,7 @@ import 'dart:io'; // 导入Dart的IO库以使用文件系统
 import 'package:flutter/material.dart'; // 导入Flutter材料设计包
 import 'package:image_picker/image_picker.dart'; // 导入图片选择器包
 
-// 定义一个名为PhotoCamera的StatefulWidget
+// 相册、相机
 class PhotoCamera extends StatefulWidget {
   @override
   // 创建状态

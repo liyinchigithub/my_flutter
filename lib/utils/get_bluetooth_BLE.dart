@@ -1,5 +1,6 @@
 import 'package:flutter_blue/flutter_blue.dart';
 
+//工具类-低功耗蓝牙
 class BluetoothManager {
   FlutterBlue flutterBlue = FlutterBlue.instance;
 

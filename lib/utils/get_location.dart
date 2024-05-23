@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart'; // 导入 geolocator 包
 import 'package:flutter/services.dart'; // 导入 Flutter 服务日志包
 
+//工具类-定位
 class LocationService {
   static Future<Position> getCurrentLocation() async {
     print("开始获取当前位置"); // 添加调试输出，标记方法的开始
