@@ -51,6 +51,9 @@ flutter_project/
 - lib/utils/: 存放工具和帮助函数，**每个工具**通常是一个独立的Dart文件，例如**常量**、**转换函数**等。
 
 
+> intro.dart（欢迎页） -》 splash.dart（启动页） -》main.dart -》home.dart
+
+
 ## 1.运行项目
 
 ```shell
@@ -152,8 +155,33 @@ genhtml coverage/lcov.info -o coverage/report
 
 包括路由管理、页面跳转等。
 
-```dart
+main.dart中定义路由表，新增页面都配置一个再此
 
+```dart
+@override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: Colors.deepPurple,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      initialRoute: '/splash', // 初始路由（默认启动页）
+      routes: {
+        '/splash': (context) => SplashScreen(),  // 启动页
+        '/': (context) => MainScreen(), // 主页（有底部tabbar）
+        '/home': (context) => HomeScreen(title: "首页"), // 首页（没有底部tabbar）
+        '/login': (context) => LoginScreen(), // 登录页
+        '/photo':(context) => PhotoCamera(),// 测试相机、相册页
+        '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
+        '/bluetoothClassic':(context) => BluetoothClassicScreen(),// 蓝牙
+        '/setting':(context) => SettingScreen(),// 设置页
+        '/message': (context) => MessageScreen(), // 消息页
+      },
+    );
+  }
+}
 ```
 
 ## 列表组件 (ListView)：

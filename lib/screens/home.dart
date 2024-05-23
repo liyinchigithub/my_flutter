@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../widgets/show_alert_dialog.dart';
-import '../widgets/show_toast.dart';
+import '../widgets/show_alert_dialog_widget.dart';
+import '../widgets/show_toast_widget.dart';
 import '../widgets/carousel_widget.dart';  // 确保引用了新的carouselWidget
 import '../widgets/icon_grid_widget.dart';
 import '../widgets/product_list_widget.dart';

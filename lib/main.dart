@@ -11,7 +11,7 @@ import 'screens/bluetooth_classic.dart'; // 导入蓝牙
 import 'screens/message.dart';// 导入消息页
 import 'screens/splash.dart'; // 启动页
 import 'utils/shared_preferences.dart'; // 导入sharedPreferences
-import 'widgets/show_alert_dialog.dart'; // 假设这是一个自定义的弹窗组件
+import 'widgets/show_alert_dialog_widget.dart'; // 假设这是一个自定义的弹窗组件
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'config.dart'; // 导入配置文件
@@ -51,17 +51,17 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/splash', // 初始路由
+      initialRoute: '/splash', // 初始路由（默认启动页）
       routes: {
-        '/splash': (context) => SplashScreen(),  // 添加SplashScreen路由
-        '/': (context) => MyHomePage(), // 主页（tabbar）
-        '/home': (context) => HomeScreen(title: "首页"), // 首页
+        '/splash': (context) => SplashScreen(),  // 启动页
+        '/': (context) => MainScreen(), // 主页（有底部tabbar）
+        '/home': (context) => HomeScreen(title: "首页"), // 首页（没有底部tabbar）
         '/login': (context) => LoginScreen(), // 登录页
         '/photo':(context) => PhotoCamera(),// 测试相机、相册页
         '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
         '/bluetoothClassic':(context) => BluetoothClassicScreen(),// 蓝牙
-        '/setting':(context) => SettingScreen(),// 设置
-        '/message': (context) => MessageScreen(), // 消息
+        '/setting':(context) => SettingScreen(),// 设置页
+        '/message': (context) => MessageScreen(), // 消息页
       },
     );
   }
@@ -71,12 +71,12 @@ class MyApp extends StatelessWidget {
 ///  作用：设置应用打开的显示界面
 ///  注：StatefulWidget是有状态组件，具体介绍请跳出看附录4
 ///
-class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+class MainScreen extends StatefulWidget {
+  MainScreen({super.key});
 
   @override
-  State<MyHomePage> createState() =>
-      _MyHomePageState(); // 调用父类StatefulWidget的createState()，用于创建和StatefulWidget相关的状态 -> 跳转5
+  State<MainScreen> createState() =>
+      _MainState(); // 调用父类StatefulWidget的createState()，用于创建和StatefulWidget相关的状态 -> 跳转5
 }
 
 ///  4. 继承自State类
@@ -84,7 +84,7 @@ class MyHomePage extends StatefulWidget {
 ///      实现一系列Widget生命周期方法 & 更新Widget的状态，
 ///  注：StatefulWidget是有状态组件，具体介绍请跳出看附录4
 ///
-class _MyHomePageState extends State<MyHomePage> {
+class _MainState extends State<MainScreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     HomeScreen(title: '首页'), // 使用HomeScreen

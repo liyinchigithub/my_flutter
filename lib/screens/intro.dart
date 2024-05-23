@@ -10,16 +10,26 @@ class IntroScreen extends StatelessWidget {
       PageViewModel(
         title: "第一个介绍页面的标题",
         body: "这是应用的第一个介绍页面，描述应用如何工作。",
-        image: const Center(
-          child: Icon(Icons.waving_hand, size: 50.0),
+        // 图片
+        image: Center(
+          child: Image.network("https://awg.homeking365.com/content/frontwear/img/index/main-img.png", height: 175.0),
         ),
+        // 图标
+        // const Center(
+        //   child: Icon(Icons.waving_hand, size: 50.0),
+        // ),
       ),
       PageViewModel(
         title: "第二个介绍页面的标题",
         body: "这是应用的第二个介绍页面，进一步解释应用的特点。",
-        image: const Center(
-          child: Icon(Icons.star, size: 50.0),
+        // 图片
+        image: Center(
+          child: Image.network("https://awg.homeking365.com/content/frontwear/img/index/comment.png", height: 175.0),
         ),
+        // 图标
+        // const Center(
+        //   child: Icon(Icons.star, size: 50.0),
+        // ),
       ),
       // 可以添加更多的页面
     ];
@@ -32,13 +42,13 @@ class IntroScreen extends StatelessWidget {
       onDone: () {
         // 当点击完成按钮时的动作，跳转到包含TabBar的MyHomePage
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MyHomePage())
+          MaterialPageRoute(builder: (context) => MainScreen())
         );
       },
       onSkip: () {
        // 当点击跳过按钮时的动作，同样跳转到MyHomePage
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MyHomePage())
+          MaterialPageRoute(builder: (context) => MainScreen())
         );
       },
       showSkipButton: true,
