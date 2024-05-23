@@ -2,7 +2,12 @@
 
 A new Flutter project.
 
-<img width="200" height="330" alt="image" src="https://github.com/liyinchigithub/my_flutter/assets/19643260/95a71e0f-4876-4fb5-91c8-8f1ce8432edf">
+<img width="200" height="400" alt="image" src="https://github.com/liyinchigithub/my_flutter/assets/19643260/258dfb04-b2a7-48df-84bf-4235832de98b">
+<img width="200" height="400" alt="image" src="https://github.com/liyinchigithub/my_flutter/assets/19643260/bd585966-f9c8-46e6-9a21-53bf7361b672">
+<img width="200" height="400" alt="image" src="https://github.com/liyinchigithub/my_flutter/assets/19643260/d3961805-c0a7-4b40-a813-d01c8ae367af">
+<img width="200" height="400" alt="image" src="https://github.com/liyinchigithub/my_flutter/assets/19643260/9f4a0455-1550-43e7-8e8d-41d7b292a9f8">
+
+
 
 ## Getting Started
 
