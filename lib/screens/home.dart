@@ -10,6 +10,9 @@ import '../widgets/drawer_widget.dart';
 import '../widgets/icon_grid_widget.dart';
 import '../widgets/pin_product_widget.dart';  // 引入PinProductWidget
 import '../widgets/product_list_widget.dart';
+import '../widgets/product_card_big_widget.dart';
+import '../widgets/product_card_small_widget.dart';
+import '../widgets/product_card_medium_widget.dart';
 import '../screens/intro.dart';
 
 // 首页
@@ -45,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // Widget生命周期，初始化
+  // Widget生命周期：初始化
   @override
   void initState() {
     super.initState();
@@ -67,22 +70,19 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // Widget生命周期：销毁
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  // 置顶按钮
   void _scrollToTop() {
     _scrollController.animateTo(0, duration: Duration(seconds: 1), curve: Curves.easeInOut);
   }
 
+  // Widget布局
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,12 +101,37 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            CarouselWidget(imgList: imgList),// 金刚区
-            // PinProductWidget(),  // 拼图
-            ProductListWidget(), // 竖向产品列表
+            // 金刚区
+            CarouselWidget(imgList: imgList),
+            // 拼图
+            // PinProductWidget(),  
+            // 竖向产品列表
+            ProductListWidget(), 
+            // 卡片
+            ProjectBigCard(
+            title: '[单次]立式/挂式空调蒸洗',
+            description: '七层拆洗 140℃蒸洗 防霉抑菌',
+            price: '¥219 起',
+            imageUrl: 'https://images.homeking365.com/83ff6075-a1b5-449f-b0ea-3507d9dc24f3.jpg',
+            ),
+            ProjectMediumCard(
+             id: '100001',
+            title: '[单次]立式/挂式空调蒸洗',
+            description: '七层拆洗 140℃蒸洗 防霉抑菌',
+            price: '¥249',
+            imageUrl: 'https://images.homeking365.com/83ff6075-a1b5-449f-b0ea-3507d9dc24f3.jpg',
+            ),
+            ProjectSmallCard(
+              id: '100001',
+              title: '[单次]立式/挂式空调蒸洗',
+              description: '七层拆洗 140℃蒸洗 防霉抑菌',
+              price: '¥249',
+              imageUrl: 'https://images.homeking365.com/83ff6075-a1b5-449f-b0ea-3507d9dc24f3.jpg',
+            ),
           ],
         ),
       ),
+      // 浮动按钮
       floatingActionButton: _showBackToTopButton ? FloatingActionButton(
         onPressed: _scrollToTop,
         tooltip: 'Back to top',
