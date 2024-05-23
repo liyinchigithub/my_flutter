@@ -26,26 +26,47 @@ samples, guidance on mobile development, and a full API reference.
 ## 目录
 
 flutter_project/
+
 |-- android/
+
 |-- ios/
+
 |-- lib/
+
     |-- main.dart
+    
     |-- screens/
+    
         |-- home_screen.dart
+        
         |-- settings_screen.dart
+        
         |-- profile_screen.dart
+        
     |-- widgets/
+    
         |-- custom_button.dart
+        
         |-- custom_drawer.dart
+        
     |-- models/
+    
         |-- user.dart
+        
         |-- settings.dart
+        
     |-- services/
+    
         |-- api.dart
+        
         |-- authentication.dart
+        
     |-- utils/
+    
         |-- constants.dart
+        
         |-- helpers.dart
+
 |-- test/
 
 - lib/main.dart: 应用的入口文件，包含main()函数和顶层的runApp()调用。
