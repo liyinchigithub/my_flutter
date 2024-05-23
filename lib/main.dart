@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:my_flutter/screens/category.dart';
 import 'package:my_flutter/screens/photo_camera.dart';
 import 'package:my_flutter/screens/test_http_request.dart';
 import 'screens/my.dart'; // 导入
@@ -48,7 +49,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.deepPurple,
+        background: Colors.white,
+        onBackground: Colors.black,  // 确保这里不是白色
+      ),
         useMaterial3: true,
       ),
       initialRoute: '/splash', // 初始路由（默认启动页）
@@ -56,6 +61,8 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => SplashScreen(),  // 启动页
         '/': (context) => MainScreen(), // 主页（有底部tabbar）
         '/home': (context) => HomeScreen(title: "首页"), // 首页（没有底部tabbar）
+        '/category': (context) => CategoryPage(title: "分类"), // 我的
+        '/my': (context) => MyScreen(title: "我的"), // 我的
         '/login': (context) => LoginScreen(), // 登录页
         '/photo':(context) => PhotoCamera(),// 测试相机、相册页
         '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
@@ -86,7 +93,8 @@ class MainScreen extends StatefulWidget {
 class _MainState extends State<MainScreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    HomeScreen(title: '首页'), // 使用HomeScreen
+    HomeScreen(title: '首页'),
+    CategoryPage(title: '分类'),
     TestScreen(title: '测试'),
     MyScreen(title: '我的'),
   ];
@@ -99,6 +107,7 @@ class _MainState extends State<MainScreen> {
       // ),
       body: _pages[_currentIndex], //
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,  // 确保导航栏类型为fixed
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -110,6 +119,10 @@ class _MainState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: '首页',
           ),
+           BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit_sharp),
+            label: '分类',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit_sharp),
             label: '测试',
@@ -119,6 +132,8 @@ class _MainState extends State<MainScreen> {
             label: '我的',
           ),
         ],
+        selectedItemColor: Colors.deepPurple,  // 选中项颜色
+        unselectedItemColor: Colors.black54,  // 未选中项颜色
       ),
       drawer: Drawer(
         child: ListView(

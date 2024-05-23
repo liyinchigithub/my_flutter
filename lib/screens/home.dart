@@ -18,8 +18,7 @@ import '../screens/intro2.dart';
 
 // 首页
 class HomeScreen extends StatefulWidget {
-  final String title;
-
+  final String title;// 顶栏标题
   HomeScreen({Key? key, required this.title}) : super(key: key);
 
   @override
