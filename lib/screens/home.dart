@@ -101,9 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            CarouselWidget(imgList: imgList),
-            // PinProductWidget(),  // 在轮播图下方添加PinProductWidget
-            ProductListWidget(), 
+            CarouselWidget(imgList: imgList),// 金刚区
+            // PinProductWidget(),  // 拼图
+            ProductListWidget(), // 竖向产品列表
           ],
         ),
       ),
