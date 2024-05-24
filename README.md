@@ -145,7 +145,53 @@ flutter build ios --release
 ```
 
 
+# 方法定义
 
+1.函数方法定义在继承StatefulWidget的类中，方法名前缀为_，如_incrementCounter()。
+
+```dart
+class _MyHomePageState extends State<MyHomePage> {
+  _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+  // 其他方法
+}
+```
+
+2.在布局中调用这些定义的函数
+
+```dart
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+            leading: IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
+          ),
+          body: Center(
+                  FlatButton(
+                    onPressed: _incrementCounter, // 按钮事件 调用_incrementCounter()方法
+                    child: Text('Increment'),
+                  )
+          )
+  );
+}
+```
+
+
+# 生命周期
+
+* initState()
+
+  当State对象被插入到树中时调用，
+  }
+}
+```
 
 
 # 常用组件
