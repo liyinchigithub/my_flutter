@@ -184,14 +184,60 @@ Widget build(BuildContext context) {
 ```
 
 
-# 生命周期
+# 状态管理
 
-* initState()
+1.状态管理分为两种：
 
-  当State对象被插入到树中时调用，
+- 一种是在组件内部管理状态，如StatefulWidget；
+- 另一种是全局管理状态，如**InheritedWidget**。
+- **InheritedWidget**是Flutter中的一种特殊组件，它允许**子组件访问父组件的状态**。
+- **InheritedWidget**是一种**跨组件传递数据**的方式，可以用于在应用程序的不同部分共享数据。
+- **InheritedWidget**的子组件可以通过**InheritedWidget.of(context)**方法获取父组件的状态。
+
+```dart
+  // 父组件
+  class _MyHomePageState extends State<MyHomePage> {
+    int _counter = 0;
+    // ...
   }
-}
 ```
+
+```dart
+  // 子组件
+  class MyInheritedWidget extends InheritedWidget {
+    final int counter;// 
+    // 构造函数
+    MyInheritedWidget({
+      Key key,
+      @required this.counter,
+      @required Widget child,
+    }) : super(key: key, child: child);
+    // 获取父组件的状态
+    static MyInheritedWidget of(BuildContext context) {
+      return context.dependOnInheritedWidgetOfExactType<MyInheritedWidget>();// 获取父组件的状态
+    }
+  }
+```
+
+
+
+# Widget 生命周期
+
+- 1.initState()：在组件**初始化**时调用，只调用一次。
+- 2.didChangeDependencies()：在**组件依赖的InheritedWidget**发生变化时调用，可能调用多次。
+- 3.build()：在组件**构建时**调用，可能调用多次。
+- 4.reassemble()：在组件**重新构建**时调用，只调用一次。
+- 5.didUpdateWidget()：在组件的Widget更新时调用，可能调用多次。
+- 6.deactivate()：在组件**被移除**时调用，只调用一次。
+- 7.dispose()：在组件**被销毁**时调用，只调用一次。
+- 8.didChangeAppLifecycleState()：在应用程序生命周期状态发生变化时调用，可能调用多次。
+- 9.didChangeMetrics()：在设备的**显示信息**发生变化时调用，可能调用多次。
+- 10.didChangePlatformBrightness()：在设备的**亮度**发生变化时调用，可能调用多次。
+- 11.didChangeLocales()：在应用程序的**本地化信息发生变化**时调用，可能调用多次。
+- 12.didChangeAccessibilityFeatures()：在应用程序的**辅助功能特性发生变化**时调用，可能调用多次。
+- 13.didChangeTextScaleFactor()：在应用程序的**文字缩放因子发生变化**时调用，可能调用多次。
+- 14.didChangeAccessibilityLanguage()：在应用程序的**辅助功能语言发生变化**时调用，可能调用多次。
+- 15.didChangeInactive()：在应用程序的**非活动状态发生变化**时调用，可能调用多次。
 
 
 # 常用组件
