@@ -108,9 +108,6 @@ flutter clean
 flutter pub get
 ```
 
-
-
-
 ## 4.生成代码覆盖率报告
 
 ```shell
@@ -118,13 +115,47 @@ flutter test --coverage
 genhtml coverage/lcov.info -o coverage/report
 ```
 
+## 5.打包发布
+
+* Android
+
+- （1）测试包
+
+```shell
+flutter build apk --debug
+```
+- （2）产线包
+
+```shell
+flutter build apk --release
+```
+
+* iOS
+
+- （1）测试包
+
+```shell
+flutter build ios --test-mode
+```
+
+- （2）产线包
+
+```shell
+flutter build ios --release
+```
+
+
+
+
+
 # 常用组件
 
 - [Flutter 组件列表](https://pub.flutter-io.cn/flutter)
 - [Flutter 组件列表（中文）](https://flutterchina.club/widgets/)
 
 - [一些不错的 UI 相关库推荐](https://blog.csdn.net/qq_28550263/article/details/131521673)
-- [有道云笔记】0.Flutter新手入门常用组件](https://note.youdao.com/s/MeSVopHZ)
+
+- [常用组件](https://note.youdao.com/s/MeSVopHZ)
 
 ## 容器组件 (Container)
 

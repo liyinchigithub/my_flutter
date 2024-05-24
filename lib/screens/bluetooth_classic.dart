@@ -4,7 +4,7 @@ import 'package:bluetooth_classic/models/device.dart';
 import 'package:flutter/services.dart'; // 导入设备模型
 
 // 经典蓝牙页
-class BluetoothClassicScreen extends StatefulWidget { // 创建一个有状态的小部件，用于蓝牙屏幕
+  class BluetoothClassicScreen extends StatefulWidget { // 创建一个有状态的小部件，用于蓝牙屏幕
   const BluetoothClassicScreen({super.key}); // 构造函数
 
   @override
@@ -24,19 +24,19 @@ class _BluetoothClassicScreenState extends State<BluetoothClassicScreen> { // �
   }
   //
   Future<void> initPlatformState() async {
-    String platformVersion;
-    try {
-      platformVersion = await _bluetoothClassicPlugin.getPlatformVersion() ??
-          'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+  String platformVersion;
+  try {
+    platformVersion = await _bluetoothClassicPlugin.getPlatformVersion() ?? 'Unknown platform version';
+    print("平台版本: $platformVersion");
+  } on PlatformException {
+    platformVersion = 'Failed to get platform version.';
+    print("获取平台版本失败");
   }
+  if (!mounted) return;
+  setState(() {
+    _platformVersion = platformVersion;
+  });
+}
 
   // 已匹配设备
   Future<void> _getPairedDevices() async { // 异步获取已配对设备的方法

@@ -13,6 +13,7 @@ import '../widgets/product_list_widget.dart';
 import '../widgets/product_card_big_widget.dart';
 import '../widgets/product_card_small_widget.dart';
 import '../widgets/product_card_medium_widget.dart';
+import '../screens/classified_waterfall_flow.dart';
 import '../screens/intro.dart';
 import '../screens/intro2.dart';
 
@@ -132,6 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
               description: '七层拆洗 140℃蒸洗 防霉抑菌',
               price: '¥249',
               imageUrl: 'https://images.homeking365.com/83ff6075-a1b5-449f-b0ea-3507d9dc24f3.jpg',
+            ),
+            // 分类瀑布流
+            SizedBox(
+              height: MediaQuery.of(context).size.height, // 确保分类瀑布流有足够的高度
+              child: ClassifiedWaterfallFlow(),
             ),
           ],
         ),

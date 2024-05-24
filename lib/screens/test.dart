@@ -17,7 +17,6 @@ import '../screens/test_http_request.dart';// http请求测试
 import '../utils/shared_preferences.dart'; // 读写缓存
 
 // 测试页
-
 class TestScreen extends StatefulWidget {
   final String title;
 
@@ -27,6 +26,7 @@ class TestScreen extends StatefulWidget {
   _TesteScreenState createState() => _TesteScreenState();
 }
 
+// 状态
 class _TesteScreenState extends State<TestScreen> {
   int _counter = 0;
   String _location = '定位经纬度';// 定位
@@ -48,7 +48,7 @@ class _TesteScreenState extends State<TestScreen> {
         'https://www.ifeng.com',
   };
 
-  // 获取定位
+  // 获取定位方法
   void _getLocation() async {
     try {
       final position = await LocationService.getCurrentLocation();
@@ -64,7 +64,7 @@ class _TesteScreenState extends State<TestScreen> {
     }
   }
 
-  //
+  // 累加计数方法
   void _incrementCounter() {
     //
     setState(() {
@@ -72,7 +72,7 @@ class _TesteScreenState extends State<TestScreen> {
     });
   }
 
-  // 提交表单
+  // 提交表单方法
   void _submitForm() {
   String username = _textFieldUsernameController.text;// 获取输入框的值
   String password = _textFieldPasswordController.text;// 获取输入框的值
@@ -85,30 +85,32 @@ class _TesteScreenState extends State<TestScreen> {
   // 进一步处理，如验证或发送到服务器...
 }
 
+  // Widget生命周期-初始化
   @override
   void initState() {
     super.initState();
     print("initState: 初始化状态");
   }
-  
+  // Widget生命周期-依赖变化
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     print("didChangeDependencies: 依赖变化");
   }
-
+  // Widget生命周期-Widget更新
   @override
   void didUpdateWidget(TestScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     print("didUpdateWidget: Widget更新");
   }
-
+  // Widget生命周期-激活
   @override
   void deactivate() {
     super.deactivate();
     print("deactivate: Deactivate");
   }
 
+  // Widget生命周期-清理
   @override
   void dispose() {
     // 清理控制器资源
@@ -117,7 +119,7 @@ class _TesteScreenState extends State<TestScreen> {
     super.dispose();
   }
 
-
+  // 布局
   @override
   Widget build(BuildContext context) {
     return Scaffold(
