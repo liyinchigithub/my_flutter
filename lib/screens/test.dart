@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter/screens/bluetooth_classic.dart';
+import 'package:my_flutter/screens/register.dart';
 import '../utils/http_request.dart';
 import '../widgets/show_alert_dialog_widget.dart'; // 弹窗
 import '../widgets/show_toast_widget.dart';
@@ -285,6 +286,18 @@ class _TesteScreenState extends State<TestScreen> {
               child: Text('删除缓存'),
             ),
             SizedBox(height: 20), // 垂直间隔20像素
+            OutlinedButton(
+              onPressed: () {
+                // 跳转注册页
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterPage(title: "表单组件",)),
+                );
+              },
+              child: Text('表单组件'),
+            ),
+            SizedBox(height: 20), // 垂直间隔20像素
+
             // 输入框
             Container(
               width: 300, // 设置宽度为200像素
