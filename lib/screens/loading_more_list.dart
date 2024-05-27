@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/show_toast_widget.dart';
+import '../screens/loading_more_list_detail.dart';
 // 分页列表
 class PaginatedListExample extends StatefulWidget {
   final String title;
@@ -64,7 +66,23 @@ class _PaginatedListExampleState extends State<PaginatedListExample> {
             return _isLoading ? Center(child: CircularProgressIndicator()) : SizedBox();
           }
           // 否则，返回列表项
-          return ListTile(title: Text(_items[index]));
+          return ListTile(
+            title: Text(_items[index]),
+            // 点击事件
+            onTap: () {
+              // 调试输出
+              print('点击了: ${_items[index]}');
+              // 显示提示
+              showToast('点击了: ${_items[index]}');
+              // 跳转到详情页
+               Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ItemDetailPage(itemId: _items[index]),// 
+                ),
+              );
+            },
+            );
         },
       ),
     );

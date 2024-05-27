@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter/widgets/show_toast_widget.dart';
-
+import '../widgets/show_toast_widget.dart';
 // 订单列表-分页加载
 class OrderListScreen extends StatefulWidget {
   @override
   _OrderListScreenState createState() => _OrderListScreenState();
 }
 
+// 订单列表-分页加载
 class _OrderListScreenState extends State<OrderListScreen> {
+  // 滚动控制器
   final ScrollController _scrollController = ScrollController();
+  // 订单列表
   List<Order> _orders = [];
+  // 当前页
   int _currentPage = 1;
+  // 是否正在加载
   bool _isFetching = false;
-
+  // 初始化
   @override
   void initState() {
     super.initState();
     _fetchOrders();
     _scrollController.addListener(_onScroll);
   }
-
+  // 获取订单
   void _fetchOrders() {
     if (_isFetching) return;
     setState(() => _isFetching = true);
@@ -30,33 +34,39 @@ class _OrderListScreenState extends State<OrderListScreen> {
         _orders.addAll(newOrders);
         _currentPage++;
         _isFetching = false;
+        print('Fetched ${newOrders.length} orders, current page: $_currentPage');
       });
     });
   }
-
+  // 滚动监听
   void _onScroll() {
+    // 如果滚动到底部
     if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-      _fetchOrders();
+      _fetchOrders();// 获取订单
     }
   }
-
+  // 构建
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('订单列表')),
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: _orders.length + (_isFetching ? 1 : 0),
-        itemBuilder: (context, index) {
+      body: ListView.builder( // 列表视图
+        controller: _scrollController,// 滚动控制器
+        itemCount: _orders.length + (_isFetching ? 1 : 0),// 订单数量
+        itemBuilder: (context, index) { // 列表项构建器
+          // 如果是最后一条，则加载更多
           if (index >= _orders.length) {
+            // 
             return Center(child: CircularProgressIndicator());
           }
           return ListTile(
             title: Text(_orders[index].name),
             subtitle: Text('订单号: ${_orders[index].id}'),
+            // 点击事件
             onTap: () {
-            showToast('用户点击了订单: ${_orders[index].id}');
-            print('用户点击了订单: ${_orders[index].id}');
+               // 调试输出
+              print('点击了订单: ${_orders[index].id}');
+              // showToast('用户点击了订单: ${_orders[index].id}');
           },
           );
         },
