@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter/widgets/show_toast_widget.dart';
 
 // 订单列表-分页加载
 class OrderListScreen extends StatefulWidget {
@@ -53,6 +54,10 @@ class _OrderListScreenState extends State<OrderListScreen> {
           return ListTile(
             title: Text(_orders[index].name),
             subtitle: Text('订单号: ${_orders[index].id}'),
+            onTap: () {
+            showToast('用户点击了订单: ${_orders[index].id}');
+            print('用户点击了订单: ${_orders[index].id}');
+          },
           );
         },
       ),
