@@ -50,10 +50,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.deepPurple,
         colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.deepPurple,
-        background: Colors.white,
-        onBackground: Colors.black,  // 确保这里不是白色
-      ),
+          seedColor: Colors.deepPurple,
+          background: Colors.white,
+          onBackground: Colors.black,  // 确保这里不是白色
+        ),
         useMaterial3: true,
       ),
       initialRoute: '/splash', // 初始路由（默认启动页）
@@ -67,6 +67,7 @@ class MyApp extends StatelessWidget {
         '/photo':(context) => PhotoCamera(),// 测试相机、相册页
         '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
         '/bluetoothClassic':(context) => BluetoothClassicScreen(),// 蓝牙
+        '/test':(context) => TestScreen(title: '测试',),// 测试页
         '/setting':(context) => SettingScreen(),// 设置页
         '/message': (context) => MessageScreen(), // 消息页
       },
@@ -119,7 +120,7 @@ class _MainState extends State<MainScreen> {
             icon: Icon(Icons.home),
             label: '首页',
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit_sharp),
             label: '分类',
           ),

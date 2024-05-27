@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 分类tabbar
 class CategoryPage extends StatefulWidget {
   final String title;// 顶栏标题
 

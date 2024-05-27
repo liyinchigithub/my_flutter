@@ -50,7 +50,8 @@ dev_dependencies:
   bluetooth_classic: ^0.0.1 # 经典蓝牙
   introduction_screen: ^3.1.14 # 启动页
   liquid_swipe: ^3.1.0 # 欢迎页
-
+#  flashy_tab_bar2: ^0.0.10 # 底部导航
+  vertical_tab_bar_view: ^0.0.1 # 分类滚动列表
 
   # "flutter_lints"包包含了一套推荐的lint规则，
   # 以鼓励良好的编码实践。该包提供的lint集在你的

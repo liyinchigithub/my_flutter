@@ -130,6 +130,13 @@ flutter build apk --debug
 flutter build apk --release
 ```
 
+构建发布 App Bundle (推荐):
+
+```shell
+flutter build appbundle --release
+```
+这个命令生成一个 App Bundle 文件，这是 Google 推荐的发布格式，因为它支持动态交付，只向用户设备发送必要的代码和资源。
+
 * iOS
 
 - （1）测试包
@@ -143,6 +150,10 @@ flutter build ios --test-mode
 ```shell
 flutter build ios --release
 ```
+
+**注意事项**
+- 确保在构建发布版本之前，检查 **android/app/build.gradle** 文件中的**版本号和版本代码**，并适当更新它们。
+- 发布到应用商店前，确保遵守所有的应用商店政策和准备好所有必要的元数据和资料。
 
 
 # 方法定义
@@ -180,6 +191,118 @@ Widget build(BuildContext context) {
                   )
           )
   );
+}
+```
+
+
+# 数据模型定义
+
+
+1.在lib目录下创建models文件夹，用于存放数据模型。
+2.在models文件夹下创建UserModel.dart文件，用于定义数据模型。
+
+* 订单类
+
+- 假设后端返回的订单数据
+
+```json
+{
+  "id": "123",
+  "name": "Sample Order",
+  "quantity": 10,
+  "status": "shipped"
+}
+```
+
+- 根据实际需要定义Order类
+
+```dart
+class Order {
+  final String id;
+  final String name;
+  final int quantity; // 如果你不需要这个字段，可以不包括它
+  final String status; 
+
+  Order({required this.id, required this.name, this.quantity, this.status});
+
+  factory Order.fromJson(Map<String, dynamic> json) {
+    return Order(
+      id: json['id'],
+      name: json['name'],
+      quantity: json['quantity'],
+      status: json['status']
+    );
+  }
+}
+```
+
+* 用户类
+
+- 假设后端返回的用户数据
+
+```json
+{
+  "id": "123",
+  "name":
+  "John Doe",
+  "email": "johndoe@example.com",
+  "avatarUrl": "https://example.com/avatar.jpg"
+}
+```
+- 根据实际需要定义UserModel类
+
+```dart
+class UserModel {
+  // 
+  final String id;
+  final String name;
+  final String email;
+  final String avatarUrl;
+  // 假设需要更多的字段，比如电话号码、地址等
+  UserModel({
+    required this.id,
+    required this.name,
+    required this.email,
+    this.avatarUrl = '',
+  });
+  // 假设后端返回的JSON数据
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      avatarUrl: json['avatarUrl'] as String? ?? '',
+    );
+  }
+}
+```
+
+- 使用 UserModel
+
+可以在你的应用中使用这个UserModel来存储和管理用户数据。
+
+例如，当你从API获取用户信息时，可以使用**fromJson**方法来**解析JSON**数据并创建UserModel实例。
+
+
+示例：从API获取用户数据
+
+假设你有一个函数fetchUserFromApi，它从API获取用户数据，并返回一个UserModel实例：
+
+```dart
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+// 假设后端返回的用户数据
+Future<UserModel> fetchUserFromApi(String userId) async {
+  // 发送GET请求获取用户数据
+  final response = await http.get(Uri.parse('https://api.example.com/users/$userId'));
+
+  if (response.statusCode == 200) {
+    // 解析JSON数据并创建UserModel实例
+    return UserModel.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load user');
+  }
 }
 ```
 

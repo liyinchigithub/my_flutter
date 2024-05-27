@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 注册页面
+// 注册页面（表单无校验属性）
 class RegisterPage extends StatefulWidget {
   final String title;
   // 构造函数

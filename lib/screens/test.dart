@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter/screens/bluetooth_classic.dart';
+import 'package:my_flutter/screens/my_form.dart';
 import 'package:my_flutter/screens/register.dart';
 import '../utils/http_request.dart';
 import '../widgets/show_alert_dialog_widget.dart'; // 弹窗
@@ -15,7 +16,8 @@ import '../utils/get_bluetooth_BLE.dart'; // BLE蓝牙
 // import '../utils/get_bluetooth_classic.dart'; // 经典蓝牙
 import '../screens/photo_camera.dart'; // 相册、相机
 import '../screens/test_http_request.dart';// http请求测试
-import '../utils/shared_preferences.dart'; // 读写缓存
+import '../utils/shared_preferences.dart';
+import 'loading_more_list.dart'; // 读写缓存
 
 // 测试页
 class TestScreen extends StatefulWidget {
@@ -294,7 +296,27 @@ class _TesteScreenState extends State<TestScreen> {
                   MaterialPageRoute(builder: (context) => RegisterPage(title: "表单组件",)),
                 );
               },
-              child: Text('表单组件'),
+              child: Text('表单组件（无校验）'),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                // 跳转注册页
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyForm(title: "表单组件",)),
+                );
+              },
+              child: Text('表单组件（校验）'),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                // 跳转注册页
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PaginatedListExample(title: "列表分页加载",)),
+                );
+              },
+              child: Text('列表分页加载'),
             ),
             SizedBox(height: 20), // 垂直间隔20像素
 
