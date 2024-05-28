@@ -4,7 +4,8 @@ class APIConfig {
   static const String CheckStaffPhone='/StaffWear/CheckStaffPhone';
 
 
-  static const String baseUrlDev = 'http://10.224.0.20:8088';
+  // static const String baseUrlDev = 'http://10.224.0.20:8088';
+  static const String baseUrlDev = 'http://192.168.31.81:8088';
   static const String getAllOrdersPagedSorted = '/v1/orders/getAllOrdersPagedSorted';
 }
 

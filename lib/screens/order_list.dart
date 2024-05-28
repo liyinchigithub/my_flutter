@@ -23,22 +23,31 @@ class _OrderListScreenState extends State<OrderListScreen> {
   // 订单列表
   List<Order> _orders = [];
   // 当前页
-  int _currentPage = 1;
+  int _currentPage = 0;
   // 是否正在加载
   bool _isFetching = false;
   // 初始化
   @override
   void initState() {
     super.initState();
-    _fetchOrders();
-    _scrollController.addListener(_onScroll);
+    _fetchOrders();// 获取订单
+    _scrollController.addListener(_onScroll);// 滚动监听
   }
 
   // 获取订单
   void _fetchOrders() async {
-    if (_isFetching) return;
-    setState(() => _isFetching = true);
+    // if (_isFetching) return;
+    // setState(() => _isFetching = true);
 
+    if(_isFetching){
+      return;
+    }else{
+      setState(() {
+        _isFetching = true;
+      });
+    }
+
+    // 获取订单
     try {
       List<Order> newOrders = await fetchOrdersFromApi(_currentPage);
       setState(() {
@@ -78,7 +87,7 @@ class _OrderListScreenState extends State<OrderListScreen> {
             return Center(child: CircularProgressIndicator());
           }
           return ListTile(
-            title: Text(_orders[index].name),
+            title: Text(_orders[index].status),
             subtitle: Text('订单号: ${_orders[index].id}'),
             // 点击事件
             onTap: () {
@@ -116,39 +125,18 @@ Future<List<Order>> fetchOrdersFromApi(int page) async {
   var response = await http.get(url);
 
   // 解析数据
-  // if (response.statusCode == 200) {
-  //   var jsonResponse = json.decode(response.body);
-  //   if (jsonResponse['code'] == 0 && jsonResponse['data'] != null) {
-  //     List<dynamic> data = jsonResponse['data'];
-  //     return data.map((item) => Order.fromJson(item)).toList();
-  //   } else {
-  //     print('Failed to load orders: ${jsonResponse['message']}');
-  //     throw Exception('Failed to load orders: ${jsonResponse['message']}');
-  //   }
-  // } else {
-  //   throw Exception(
-  //       'Failed to load orders with status code: ${response.statusCode}');
-  // }
-
-  //  解析数据（数据库表id int 代码id String 做类型转化）
   if (response.statusCode == 200) {
     var jsonResponse = json.decode(response.body);
     if (jsonResponse['code'] == 0 && jsonResponse['data'] != null) {
       List<dynamic> data = jsonResponse['data'];
-      return data.map((item) {
-        int idAsInt = item['id'] is int ? item['id'] : int.tryParse(item['id'].toString()) ?? 0; // 尝试将 ID 转换为整数，如果失败则默认为 0
-        return Order(
-          id: idAsInt,
-          name: item['name'],
-          quantity: item['quantity'],
-          status: item['status']
-        );
-      }).toList();
+      return data.map((item) => Order.fromJson(item)).toList();
     } else {
+      print('Failed to load orders: ${jsonResponse['message']}');
       throw Exception('Failed to load orders: ${jsonResponse['message']}');
     }
   } else {
-    throw Exception('Failed to load orders with status code: ${response.statusCode}');
-
+    throw Exception(
+        'Failed to load orders with status code: ${response.statusCode}');
   }
+
 }

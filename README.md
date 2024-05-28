@@ -206,11 +206,10 @@ Widget build(BuildContext context) {
 - 假设后端返回的订单数据
 
 ```json
-{
-  "id": "123",
-  "name": "Sample Order",
-  "quantity": 10,
-  "status": "shipped"
+ {
+  "userId": 10,
+  "totalPrice": 11.00,
+  "status": "enable"
 }
 ```
 
@@ -218,19 +217,19 @@ Widget build(BuildContext context) {
 
 ```dart
 class Order {
-  final String id;
-  final String name;
-  final int quantity; // 如果你不需要这个字段，可以不包括它
+  final int id;
+  final int userId;
+  final int totalPrice; 
   final String status; 
 
-  Order({required this.id, required this.name, this.quantity, this.status});
+  Order({required this.id, required this.userId, this.totalPrice, this.status});
 
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
-      id: json['id'],
-      name: json['name'],
-      quantity: json['quantity'],
-      status: json['status']
+            id: json['id'],
+            userId: json['userId'],
+            totalPrice: json['totalPrice'],
+            status: json['status']
     );
   }
 }

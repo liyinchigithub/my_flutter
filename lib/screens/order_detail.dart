@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // 分页加载item详情页
 class ItemDetailPage extends StatelessWidget {
+  // 路由传参id
   final int itemId;
   // 构造函数
   const ItemDetailPage({Key? key, required this.itemId}) : super(key: key);
