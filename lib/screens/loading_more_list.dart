@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert'; // For json decoding
 import '../widgets/show_toast_widget.dart';
 import '../screens/loading_more_list_detail.dart';
+import '../config.dart'; 
+
 // 分页列表
 class PaginatedListExample extends StatefulWidget {
   final String title;
@@ -40,7 +43,7 @@ class _PaginatedListExampleState extends State<PaginatedListExample> {
     // 设置为加载中
     setState(() => _isLoading = true);
 
-  // 模拟网络请求延迟
+     // 模拟网络请求延迟
     Future.delayed(Duration(seconds: 2), () {
       // 生成新的数据
       List<String> newItems = List.generate(20, (index) => 'Item ${index + _items.length}');
@@ -51,12 +54,17 @@ class _PaginatedListExampleState extends State<PaginatedListExample> {
         _isLoading = false;
       });
     });
+
+    // 发起http请求
+
+
+
   }
   // 构建
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Paginated List Example')),
+      appBar: AppBar(title: Text(widget.title)),
       body: ListView.builder(
         controller: _scrollController,// 滚动控制器
         itemCount: _items.length + 1, // 列表项数量

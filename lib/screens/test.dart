@@ -17,7 +17,8 @@ import '../utils/get_bluetooth_BLE.dart'; // BLE蓝牙
 import '../screens/photo_camera.dart'; // 相册、相机
 import '../screens/test_http_request.dart';// http请求测试
 import '../utils/shared_preferences.dart';
-import 'loading_more_list.dart'; // 读写缓存
+import 'loading_more_list.dart';
+import 'order_list.dart'; // 读写缓存
 
 // 测试页
 class TestScreen extends StatefulWidget {
@@ -317,6 +318,16 @@ class _TesteScreenState extends State<TestScreen> {
                 );
               },
               child: Text('列表分页加载'),
+            ),
+             OutlinedButton(
+              onPressed: () {
+                // 跳转注册页
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OrderListScreen(title: "列表分页加载-订单",)),
+                );
+              },
+              child: Text('列表分页加载-订单'),
             ),
             SizedBox(height: 20), // 垂直间隔20像素
 
