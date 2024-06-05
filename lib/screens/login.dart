@@ -133,8 +133,11 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 IconButton(
-                  icon: Image.asset('assets/wechat.png'),
-                  iconSize: 50,
+                 icon: Image.asset(
+                  'assets/images/wechat.png',
+                  width: 40,  // 设置宽度
+                  height: 40, // 设置高度
+                ),
                   onPressed: () {
                     _handleLogin(() {
                       // 微信登录按钮的操作
@@ -142,15 +145,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 SizedBox(width: 20),
-                IconButton(
-                  icon: Image.asset('assets/apple.png'),
-                  iconSize: 50,
-                  onPressed: () {
-                    _handleLogin(() {
-                      // Apple登录按钮的操作
-                    });
-                  },
-                ),
+                // IconButton(
+                //   icon: Image.asset(
+                //   'assets/images/apple.png',
+                //    width: 40,  // 设置宽度
+                //    height: 40, // 设置高度
+                // ),
+                //   onPressed: () {
+                //     _handleLogin(() {
+                //       // Apple登录按钮的操作
+                //     });
+                //   },
+                // ),
               ],
             ),
             Spacer(),
@@ -165,24 +171,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     });
                   },
                 ),
-                Text.rich(
-                  TextSpan(
-                    text: '登录即视为已同意',
-                    children: [
-                      TextSpan(
-                        text: '《好懒在家平台服务协议》',
-                        style: TextStyle(color: Colors.blue),
-                        // 点击服务协议的操作
-                      ),
-                      TextSpan(text: ' '),
-                      TextSpan(
-                        text: '《隐私政策》',
-                        style: TextStyle(color: Colors.blue),
-                        // 点击隐私政策的操作
-                      ),
-                    ],
+                Expanded(  // 使用 Expanded 确保 Text.rich 有足够的空间换行
+                  child: Text.rich(
+                    TextSpan(
+                      text: '登录即视为已同意',
+                      children: [
+                        TextSpan(
+                          text: '《好懒在家平台服务协议》',
+                          style: TextStyle(color: Colors.blue),
+                          // 点击服务协议的操作
+                        ),
+                        TextSpan(text: ' '),
+                        TextSpan(
+                          text: '《隐私政策》',
+                          style: TextStyle(color: Colors.blue),
+                          // 点击隐私政策的操作
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                   ),
               ],
             ),
           ],
