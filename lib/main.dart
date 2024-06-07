@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_flutter/screens/category.dart';
+import 'screens/gaode_map.dart';
 import 'package:my_flutter/screens/photo_camera.dart';
 import 'package:my_flutter/screens/test_http_request.dart';
 import 'screens/my.dart'; // 导入
 import 'screens/home.dart'; // 导入home页面
 import 'screens/login.dart'; // 导入login页面';
 import 'screens/test.dart'; // 导入login页面';
-import 'screens/setting.dart';// 导入设置页
+import 'screens/setting.dart'; // 导入设置页
 import 'screens/bluetooth_classic.dart'; // 导入蓝牙
-import 'screens/message.dart';// 导入消息页
+import 'screens/message.dart'; // 导入消息页
 import 'screens/splash.dart'; // 启动页
+import 'package:amap_map_fluttify/amap_map_fluttify.dart'; // 高德地图
 import 'utils/shared_preferences.dart'; // 导入sharedPreferences
 import 'widgets/show_alert_dialog_widget.dart'; // 假设这是一个自定义的弹窗组件
 import 'package:http/http.dart' as http;
@@ -24,6 +26,15 @@ import 'config.dart'; // 导入配置文件
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPreferencesService.init();
+
+  // 用户同意隐私政策
+  await AmapService.instance.updatePrivacyShow(true);
+  await AmapService.instance.updatePrivacyAgree(true);
+  await AmapService.instance.init(
+    iosKey: '你的iOS Key',
+    androidKey: '49d5329dbf2e11a059d7e527db7192be',
+    // webKey: '你的Web Key', // 如果使用Web平台
+  );
   runApp(MyApp()); // 等价于 void main() => runApp(MyApp());
 }
 
@@ -52,24 +63,29 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,
           background: Colors.white,
-          onBackground: Colors.black,  // 确保这里不是白色
+          onBackground: Colors.black, // 确保这里不是白色
         ),
         useMaterial3: true,
       ),
       initialRoute: '/splash', // 初始路由（默认启动页）
       routes: {
-        '/splash': (context) => SplashScreen(),  // 启动页
+        '/splash': (context) => SplashScreen(), // 启动页
         '/': (context) => MainScreen(), // 主页（有底部tabbar）
         '/home': (context) => HomeScreen(title: "首页"), // 首页（没有底部tabbar）
         '/category': (context) => CategoryPage(title: "分类"), // 我的
         '/my': (context) => MyScreen(title: "我的"), // 我的
         '/login': (context) => LoginScreen(), // 登录页
-        '/photo':(context) => PhotoCamera(),// 测试相机、相册页
-        '/testHttpRequest':(context) => TestHttpRequest(),// 测试http请求页
-        '/bluetoothClassic':(context) => BluetoothClassicScreen(),// 蓝牙
-        '/test':(context) => TestScreen(title: '测试',),// 测试页
-        '/setting':(context) => SettingScreen(),// 设置页
+        '/photo': (context) => PhotoCamera(), // 测试相机、相册页
+        '/testHttpRequest': (context) => TestHttpRequest(), // 测试http请求页
+        '/bluetoothClassic': (context) => BluetoothClassicScreen(), // 蓝牙
+        '/test': (context) => TestScreen(
+              title: '测试',
+            ), // 测试页
+        '/setting': (context) => SettingScreen(), // 设置页
         '/message': (context) => MessageScreen(), // 消息页
+        '/gaodeMap': (context) => GaodeMapScreen(
+              title: '高德地图',
+            ), // 高德地图
       },
     );
   }
@@ -108,7 +124,7 @@ class _MainState extends State<MainScreen> {
       // ),
       body: _pages[_currentIndex], //
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,  // 确保导航栏类型为fixed
+        type: BottomNavigationBarType.fixed, // 确保导航栏类型为fixed
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -133,8 +149,8 @@ class _MainState extends State<MainScreen> {
             label: '我的',
           ),
         ],
-        selectedItemColor: Colors.deepPurple,  // 选中项颜色
-        unselectedItemColor: Colors.black54,  // 未选中项颜色
+        selectedItemColor: Colors.deepPurple, // 选中项颜色
+        unselectedItemColor: Colors.black54, // 未选中项颜色
       ),
       drawer: Drawer(
         child: ListView(

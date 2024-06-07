@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /><!-- 从Android 10（API级别29）开始，ACCESS_FINE_LOCATION权限被分为更细粒度的权限，如果你的应用需要在后台访问位置-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 访问GPS定位 --> <!-- 从Android 6.0（API级别23）开始，蓝牙扫描需要定位权限，因为蓝牙扫描可以被用来粗略地定位用户。因此，如果你的应用目标是API级别23或更高，并且需要进行蓝牙扫描 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 网络定位 -->
-<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> -->
     <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_PROVIDERS" /> -->
 <!--    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
@@ -26,8 +26,9 @@
     <!--    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />-->
     <application
         android:label="my_flutter"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:name="androidx.multidex.MultiDexApplication"
+        android:icon="@mipmap/ic_launcher"
+        >
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -54,6 +55,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- 高德地图Key-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value=""/>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and
