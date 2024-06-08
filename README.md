@@ -958,6 +958,27 @@ main.dart中定义路由表，新增页面都配置一个再此
 
 
 
+# 高德地图
+
+## 1.高德地图插件
+
+> https://github.com/fluttify-project/amap_map_fluttify
+
+## 2.高德定位插件
+
+>https://github.com/fluttify-project/amap_location_fluttify
+
+## 判断是否已授权定位
+
+```dart
+```
+
+
+
+
+
+
+
 # 常见问题
 
 ## 1.运行安卓项目报错"Could not resolve all files for configuration ':app:debugRuntimeClasspath'.Failed to transform x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar (io.flutter:x86_debug:1.0.0-c4cd48e186460b32d44585ce3c103271ab676355) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.Could not download x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar (io.flutter:x86_debug:1.0.0-c4cd48e186460b32d44585ce3c103271ab676355)Could not get resource 'https://storage.flutter-io.cn/download.flutter.io/io/flutter/x86_debug/1.0.0-c4cd48e186460b32d44585ce3c103271ab676355/x86_debug-1.0.0-c4cd48e186460b32d44585ce3c103271ab676355.jar'Premature end of Content-Length delimited message body (expected: 13,982,261; received: 12,407,066)

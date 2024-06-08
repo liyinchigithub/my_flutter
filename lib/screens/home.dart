@@ -15,6 +15,8 @@ import '../widgets/project_vertical_tab_bar_view_widget.dart';// 分类滚动定
 import '../screens/classified_waterfall_flow.dart';// 瀑布流
 import '../screens/intro.dart';// 启动页
 import '../screens/intro2.dart';// 启动页
+import '../widgets/show_alert_dialog_widget.dart'; 
+import '../utils/get_location.dart';  // 获取位置
 
 // 首页
 class HomeScreen extends StatefulWidget {
@@ -28,7 +30,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController _scrollController = ScrollController();
   bool _showBackToTopButton = false;
-
+  String _location = '定位经纬度';  // 用于显示位置信息
   final Map<String, String> imgList = {
     'https://images.homeking365.com/c4fbebb7-8854-4b0d-a3f3-6ca2f9556676.jpeg': 'https://www.baidu.com',
     'https://images.homeking365.com/1c33dde1-3c20-47ed-9232-74c4bfd97c0d.jpg': 'https://www.qq.com',
@@ -48,6 +50,54 @@ class _HomeScreenState extends State<HomeScreen> {
       // 缓存已显示过欢迎页
       await prefs.setBool('first_time', false);
     }
+  }
+
+  // 检查是否首次安装启动并获取位置
+  _checkFirstTimeAndLocation() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = (prefs.getBool('first_time') ?? true);
+    if (isFirstTime) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => IntroScreen()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Intro2Screen()));
+      await prefs.setBool('first_time', false);
+    }
+    _getLocationAndCheckPermissions();  // 获取位置信息
+  }
+
+  // 获取位置并检查权限
+  void _getLocationAndCheckPermissions() async {
+    try {
+      final position = await LocationService.getCurrentLocation();
+      setState(() {
+        _location = 'Lat: ${position.latitude}, Long: ${position.longitude}';
+      });
+    } catch (e) {
+      setState(() {
+        _location = 'Error: $e';
+      });
+      if (e.toString().contains('denied')) {
+        _showPermissionDeniedDialog();
+      }
+    }
+  }
+void _showPermissionDeniedDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("权限被拒绝"),
+          content: Text("定位权限被拒终，应用无法获取您的位置信息。请在设置中启用权限。"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("确定"),
+              onPressed: () {
+                Navigator.of(context).pop(); // 关闭对话框
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   // Widget生命周期：初始化

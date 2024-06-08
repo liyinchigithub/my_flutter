@@ -55,6 +55,8 @@ dev_dependencies:
   wechat_kit: ^6.0.1 # 微信登录、分享、支付
   amap_map_fluttify: ^2.0.2 # 高德地图
   amap_location_fluttify: ^0.22.0 # 高德定位
+
+
   # "flutter_lints"包包含了一套推荐的lint规则，
   # 以鼓励良好的编码实践。该包提供的lint集在你的
   # 包的根目录下的`analysis_options.yaml`文件中被激活。

@@ -28,7 +28,7 @@ void main() async {
   await SharedPreferencesService.init();
 
   // 用户同意隐私政策
-  await AmapService.instance.updatePrivacyShow(true);
+  await AmapService.instance.updatePrivacyShow(true);// 
   await AmapService.instance.updatePrivacyAgree(true);
   await AmapService.instance.init(
     iosKey: '你的iOS Key',
