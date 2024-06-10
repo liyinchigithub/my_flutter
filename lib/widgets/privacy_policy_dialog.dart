@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
 class PrivacyPolicyDialog extends StatelessWidget {
-  final VoidCallback onAgree;
-  final VoidCallback onDisagree;
+  // 构造函数
+  PrivacyPolicyDialog({Key? key}) : super(key: key);
 
-  PrivacyPolicyDialog({Key? key, required this.onAgree, required this.onDisagree}) : super(key: key);
+  // 静态方法用于显示对话框
+  static Future<bool> show(BuildContext context) async {
+    return await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return PrivacyPolicyDialog();
+      },
+    ) ?? false; // 如果用户关闭对话框而不选择任何选项，则默认为不同意
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +30,11 @@ class PrivacyPolicyDialog extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           child: Text('拒绝'),
-          onPressed: () {
-            onDisagree();
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(false),
         ),
         TextButton(
           child: Text('同意'),
-          onPressed: () {
-            onAgree();
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(true),
         ),
       ],
     );

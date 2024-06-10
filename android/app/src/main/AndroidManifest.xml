@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 权限 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
@@ -18,9 +19,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 访问GPS定位 --> <!-- 从Android 6.0（API级别23）开始，蓝牙扫描需要定位权限，因为蓝牙扫描可以被用来粗略地定位用户。因此，如果你的应用目标是API级别23或更高，并且需要进行蓝牙扫描 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 网络定位 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> -->
+     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_PROVIDERS" /> -->
-<!--    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
     <!--    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />-->
     <!--    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />-->
@@ -50,6 +51,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- 配置定位Service -->
+        <service android:name="com.amap.api.location.APSService"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

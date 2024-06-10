@@ -28,11 +28,11 @@ void main() async {
   await SharedPreferencesService.init();
 
   // 用户同意隐私政策
-  await AmapService.instance.updatePrivacyShow(true);// 
+  await AmapService.instance.updatePrivacyShow(true);//
   await AmapService.instance.updatePrivacyAgree(true);
   await AmapService.instance.init(
     iosKey: '你的iOS Key',
-    androidKey: '49d5329dbf2e11a059d7e527db7192be',
+    androidKey: '你的Android Key',
     // webKey: '你的Web Key', // 如果使用Web平台
   );
   runApp(MyApp()); // 等价于 void main() => runApp(MyApp());
@@ -79,13 +79,13 @@ class MyApp extends StatelessWidget {
         '/testHttpRequest': (context) => TestHttpRequest(), // 测试http请求页
         '/bluetoothClassic': (context) => BluetoothClassicScreen(), // 蓝牙
         '/test': (context) => TestScreen(
-              title: '测试',
-            ), // 测试页
+          title: '测试',
+        ), // 测试页
         '/setting': (context) => SettingScreen(), // 设置页
         '/message': (context) => MessageScreen(), // 消息页
         '/gaodeMap': (context) => GaodeMapScreen(
-              title: '高德地图',
-            ), // 高德地图
+          title: '高德地图',
+        ), // 高德地图
       },
     );
   }

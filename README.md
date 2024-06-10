@@ -960,11 +960,40 @@ main.dart中定义路由表，新增页面都配置一个再此
 
 # 高德地图
 
-## 1.高德地图插件
+## 1.创建应用
+
+>https://lbs.amap.com/faq/android/map-sdk/create-project/43112
+
+### Android 生成签名
+- 1）应用包名
+
+Android端的PackageName可以直接在Flutter工程目录下android/app/src/main/AndroidManifest.xml里查看
+
+- 2）发布版安全码SHA1 和 调试安全码SHA1
+
+① 找到keytool
+
+```shell
+which  keytool
+```
+
+② debug.keystore
+
+```shell
+cd /Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home/bin
+keytool -list -v -keystore /Users/liyinchi/.android/debug.keystore
+```
+
+③输入密钥库口令
+
+debug默认输入android
+
+
+## 2.高德地图
 
 > https://github.com/fluttify-project/amap_map_fluttify
 
-## 2.高德定位插件
+## 3.高德定位
 
 >https://github.com/fluttify-project/amap_location_fluttify
 

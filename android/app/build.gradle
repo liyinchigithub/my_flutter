@@ -44,6 +44,19 @@ android {
         multiDexEnabled true    // Enable MultiDex.
     }
 
+    signingConfigs{
+        debug{
+                // keystore中key的别名
+                keyAlias 'androiddebugkey'
+                // keystore中key的密码
+                keyPassword 'android'
+                // keystore的文件路径，绝对或相对路径
+                storeFile file('/Users/liyinchi/.android/debug.keystore')
+                // keystore的密码
+                storePassword 'android'
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

@@ -9,8 +9,16 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.17.0"
-  amap_location_fluttify:
+  amap_flutter_location:
     dependency: "direct dev"
+    description:
+      name: amap_flutter_location
+      sha256: f35ff00e196d579608e0bc28ccbc1f6f53787644702f947de941f775769cc701
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
+  amap_location_fluttify:
+    dependency: transitive
     description:
       name: amap_location_fluttify
       sha256: "2c82c5d8dd1828c2a1c5246d7d79c3e5f6c3a5661f4122d4217db93115f62c13"
