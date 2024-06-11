@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
+import '../config.dart';
 class GaodeMapScreen extends StatefulWidget {
   final String title;
   // 构造函数
@@ -37,11 +40,30 @@ class _GaodeMapScreenState extends State<GaodeMapScreen> {
     }
   }
 
+     Future<void> _sendLocationData(double latitude, double longitude, String address) async {
+     var url = Uri.parse('${APIConfig.baseUrlDev}/location');
+     var response = await http.post(url, body: jsonEncode({
+       "userId": 9,  // 这里假设 userId 是固定的，根据实际情况调整
+       "latitude": latitude,
+       "longitude": longitude,
+       "address": address
+     }), headers: {
+       "Content-Type": "application/json"
+     });
+
+     if (response.statusCode == 200) {
+       print("数据发送成功");
+     } else {
+       print("数据发送失败: ${response.body}");
+     }
+   }
+
   Future<void> _getAddress(LatLng position) async {
     final reGeocodeResult = await AmapSearch.instance.searchReGeocode(position, radius: 200);
     setState(() {
       _address = reGeocodeResult.formatAddress;  // 使用正确的属性获取格式化地址
     });
+    _sendLocationData(position.latitude, position.longitude, _address!);  // 发送数据到后端
   }
 
   @override
